@@ -1,9 +1,10 @@
-import glob
 import importlib
+import glob
 import os.path
 import sys
 
 __all__ = []
+
 
 def load():
     module_paths = glob.glob(os.path.dirname(__file__) + '/*.py')
@@ -16,6 +17,7 @@ def load():
         components = module_name.split('_')
         class_name = "".join(x.title() for x in components)
         setattr(this_module, class_name, getattr(module, class_name))
+
 
 load()
 del load

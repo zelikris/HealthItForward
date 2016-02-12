@@ -2,7 +2,8 @@ import re
 import time
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.schema import Column
-from sqlalchemy.types import BigInteger
+from sqlalchemy.types import BIGINT
+
 
 class Base(object):
 
@@ -11,13 +12,14 @@ class Base(object):
         s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', cls.__name__)
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
-    def __current_timestamp__():
+    def __current_timestamp__(self):
         return int(time.time())
 
     __table_args__ = {'mysql_engine': 'InnoDB', 'mysql_charset': 'utf8'}
 
-    id = Column(BigInteger, primary_key=True)
-    time_created = Column(BigInteger, default=__current_timestamp__)
-    time_updated = Column(BigInteger, default=__current_timestamp__, onupdate=__current_timestamp__)
+    id = Column(BIGINT, primary_key=True)
+    time_created = Column(BIGINT, default=__current_timestamp__)
+    time_updated = Column(BIGINT, default=__current_timestamp__, onupdate=__current_timestamp__)
+
 
 Base = declarative_base(cls=Base)
