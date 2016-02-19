@@ -64,5 +64,10 @@ def survey1():
     return render_template('survey1.html')
 
 
+@app.route('/survey/2')
+def survey2():
+    return render_template('survey2.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
