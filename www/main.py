@@ -59,5 +59,10 @@ def register():
     return redirect(url_for('login_page'))
 
 
+@app.route('/survey/1')
+def survey1():
+    return render_template('survey1.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

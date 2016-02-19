@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register | Aggregating Outliers</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/grayscale.css') }}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <!--<i class="fa fa-heartbeat"></i>  <span class="light">Aggregating</span> Outliers-->
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="index.html">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="brand-heading"><i class="fa fa-heartbeat"></i>
+                            <span class="light">Aggregating</span> Outliers</h2>
+                    </div>
+                </div>
+                <form class="form-horizontal register-page" role="form" method="post">
+                    <h2>General Health Info Survey</h2>
+                    <div class="form-group">
+                        <label for="height" class="col-sm-3 control-label">Height</label>
+                        <div class="col-sm-9">
+                            <select id="height" name="height" class="form-control">
+                                <option>&lt; 49 in</option>
+                                <option>49 - 54 in</option>
+                                <option>55 - 60 in</option>
+                                <option>61 - 66 in</option>
+                                <option>67 - 72 in</option>
+                                <option>73 - 78 in</option>
+                                <option>&gt; 78 in</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Weight</label>
+                        <div class="col-sm-9">
+                            <select id="weight" name="weight" class="form-control">
+                                <option>&lt;= 85 lb</option>
+                                <option>86 - 95 lb</option>
+                                <option>96 - 105 lb</option>
+                                <option>106 - 115 lb</option>
+                                <option>116 - 125 lb</option>
+                                <option>126 - 135 lb</option>
+                                <option>136 - 145 lb</option>
+                                <option>146 - 155 lb</option>
+                                <option>156 - 165 lb</option>
+                                <option>166 - 175 lb</option>
+                                <option>176 - 185 lb</option>
+                                <option>186 - 195 lb</option>
+                                <option>196 - 205 lb</option>
+                                <option>206 - 215 lb</option>
+                                <option>216 - 225 lb</option>
+                                <option>226 - 235 lb</option>
+                                <option>236 - 245 lb</option>
+                                <option>246 - 255 lb</option>
+                                <option>256 - 265 lb</option>
+                                <option>266 - 275 lb</option>
+                                <option>276 - 285 lb</option>
+                                <option>286 - 295 lb</option>
+                                <option>&gt;= 295 lb</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bp" class="col-sm-3 control-label">Blood Pressure</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="text" id="bp" name="bp" placeholder="120/80">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hospitalized" class="col-sm-3 control-label">Have you ever been hospitalized?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="hospitalized" id="hospitalized" value="Yes"> Yes
+                            <input type="radio" name="hospitalized" id="hospitalized" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smoke" class="col-sm-3 control-label">Do you smoke?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="smoke" id="smoke" value="Yes"> Yes
+                            <input type="radio" name="smoke" id="smoke" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="livesmoke" class="col-sm-3 control-label">Do you live with someone else that smokes?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="livesmoke" id="livesmoke" value="Yes"> Yes
+                            <input type="radio" name="livesmoke" id="livesmoke" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alcohol" class="col-sm-3 control-label">Do you drink alcohol?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="alcohol" id="alcohol" value="Yes"> Yes
+                            <input type="radio" name="alcohol" id="alcohol" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="livealcohol" class="col-sm-3 control-label">Do you live with someone else that drinks alcohol?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="livealcohol" id="livealcohol" value="Yes"> Yes
+                            <input type="radio" name="livealcohol" id="livealcohol" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medication" class="col-sm-3 control-label">Are you currently taking any over-the-counter medications?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="medication" id="medication" value="Yes"> Yes
+                            <input type="radio" name="medication" id="medication" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="presmedication" class="col-sm-3 control-label">Are you currently taking any prescription medications?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="presmedication" id="presmedication" value="Yes"> Yes
+                            <input type="radio" name="presmedication" id="presmedication" value="No"> No
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pcp" class="col-sm-3 control-label">Do you have a primary care physician?</label>
+                        <div class="col-sm-9" style="text-align: left">
+                            <input type="radio" name="pcp" id="pcp" value="Yes"> Yes
+                            <input type="radio" name="pcp" id="pcp" value="No"> No
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ url_for('static', filename='js/grayscale.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/username.js') }}"></script>
+</body>
+
+</html>
