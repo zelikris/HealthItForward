@@ -135,3 +135,9 @@ def index():
 
 if __name__ == '__main__':
     app.run()
+
+if not app.debug:
+    import logging
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.WARNING)
+    app.logger.addHandler(handler)
