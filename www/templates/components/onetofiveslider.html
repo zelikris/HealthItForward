@@ -1,0 +1,35 @@
+<div id="{{ slider_name }}_slider"></div>
+<input type="hidden" value="1" id="{{ slider_name }}_hiddeninput" name="{{ slider_name }}">
+<p id="{{ slider_name }}_value" style="margin-top: 8px;">none of the time</p>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        $("#{{ slider_name }}_slider").slider({
+            value: 1,
+            min: 1,
+            max: 5,
+            step: 1,
+            slide: function (event, ui) {
+                $("#{{ slider_name }}_hiddeninput").val(ui.value);
+                console.log(ui.value);
+                switch(ui.value) {
+                    case 1:
+                        $("#{{ slider_name }}_value").html("none of the time");
+                        break;
+                    case 2:
+                        $("#{{ slider_name }}_value").html("a little of the time");
+                        break;
+                    case 3:
+                        $("#{{ slider_name }}_value").html("some of the time");
+                        break;
+                    case 4:
+                        $("#{{ slider_name }}_value").html("most of the time");
+                        break;
+                    case 5:
+                        $("#{{ slider_name }}_value").html("all of the time");
+                        break;
+                }
+            }
+        });
+    }, false);
+</script>

@@ -13,6 +13,7 @@ from htmlmin.main import minify
 app = Flask(__name__)
 app.secret_key = unhexlify('e3d7f0871b236241be434fe4cc789f2e72b970b5a13502488a2d259574911b65')
 app.session_interface = sessions.JWTSessionInterface()
+app.debug = True
 
 
 @app.before_request
@@ -35,14 +36,27 @@ def teardown_db_session(exception=None):
 
 
 @app.context_processor
-def inject_constant_data():
-    return dict(const=const)
+def inject_template_data():
+    return dict(const=const, user=g.user)
 
 
 @app.route('/profile')
 @sessions.login_required
 def profile():
-    return 'hi'  # TODO
+    return redirect(url_for('index_page'))  # TODO
+
+
+@app.route('/surveys')
+@sessions.login_required
+def surveys_page():
+    return render_template('surveys.html')
+
+
+@app.route('/logout')
+@sessions.login_required
+def logout():
+    session.clear()
+    return redirect(url_for('index_page'))
 
 
 @app.route('/login', methods=['GET'])
@@ -119,18 +133,23 @@ def register():
 
 
 @app.route('/survey/1')
-def survey1():
+def survey1_page():
     return render_template('survey1.html')
 
 
 @app.route('/survey/2')
-def survey2():
+def survey2_page():
     return render_template('survey2.html')
 
 
 @app.route('/')
-def index():
+def index_page():
     return render_template('index.html')
+
+
+@app.route('/donate')
+def donate_page():
+    return render_template('donate.html')
 
 
 if __name__ == '__main__':

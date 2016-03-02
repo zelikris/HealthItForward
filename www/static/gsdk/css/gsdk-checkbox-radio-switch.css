@@ -12,7 +12,7 @@
   color: #333333;
 }
 
-.form-horizontal .checkbox {
+.form-horizontal .checkbox, .form-horizontal .radio {
     padding-top: 0;
 }
 

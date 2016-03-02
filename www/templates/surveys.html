@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Surveys{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h4>Surveys</h4>
+        <p>Click any survey below to take it and provide information to HealthItForward about how you're doing.</p>
+        <a href="{{ url_for('survey1_page') }}">General Health Info Survey</a><br>
+        <a href="{{ url_for('survey2_page') }}">Quality of Life Survey</a>
+    </div>
+    <div class="space"></div>
+{% endblock %}

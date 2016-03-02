@@ -1,382 +1,246 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Quality of Life Survey | Aggregating Outliers</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ url_for('static', filename='css/grayscale.css') }}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <!--<i class="fa fa-heartbeat"></i>  <span class="light">Aggregating</span> Outliers-->
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="index.html">Home</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h2 class="brand-heading"><i class="fa fa-heartbeat"></i>
-                            <span class="light">Aggregating</span> Outliers</h2>
-                    </div>
+{% extends "base.html" %}
+{% block title %}Quality of Life Survey{% endblock title %}
+{% block content %}
+    <div class="container">
+        <form class="form-horizontal register-page" role="form" method="post">
+            <h4>Quality of Life Survey</h4>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedAccomplishing" class="col-md-3 control-label">In the past 4 weeks, how much has your
+                    health limited you in accomplishing as much as you would like to?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedAccomplishing" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
                 </div>
-                <form class="form-horizontal register-page" role="form" method="post">
-                    <h2>Quality of Life Survey</h2>
-                    <div class="form-group">
-                        <label for="limitedAccomplishing" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in accomplishing as much as you would like to?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedAccomplishing" name="heighlimitedAccomplishingt" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedTypeOfActivities" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in the type of work or other activities you can do?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedTypeOfActivities" name="limitedTypeOfActivities" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedActivities" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in doing your work or other activities?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedActivities" name="limitedActivities" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedWalkingInside" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in walking inside your house without the use of aids or assistance?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedWalkingInside" name="limitedWalkingInside" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedWalkingOutside" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in walking outside your house for at least 10 minutes without the use of aids or assistance?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedWalkingOutside" name="limitedWalkingOutside" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedCivilizedEating" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in using a knife and fork?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedCivilizedEating" name="limitedCivilizedEating" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedDressing" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in dressing yourself, including tying shoelaces and fastening buttons?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedDressing" name="limitedDressing" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedChores" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in doing moderate work around the house like vacuuming, sweeping floors, or carrying in groceries?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedChores" name="limitedChores" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedHygiene" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in taking care of your personal needs? (combing hair, using toilet, bathing)</label>
-                        <div class="col-sm-9">
-                            <select id="limitedHygiene" name="limitedHygiene" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedTossingAndTurning" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in turning from side to side in bed?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedTossingAndTurning" name="limitedTossingAndTurning" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="limitedBedClimbing" class="col-sm-3 control-label">In the past 4 weeks, how much has your health limited you in getting in and out of bed?</label>
-                        <div class="col-sm-9">
-                            <select id="limitedBedClimbing" name="limitedBedClimbing" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingNervous" class="col-sm-3 control-label">In the past 4 weeks, how often have you felt nervous?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingNervous" name="feelingNervous" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingHopeless" class="col-sm-3 control-label">In the past 4 weeks, how often have you felt hopeless?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingHopeless" name="feelingHopeless" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingRestless" class="col-sm-3 control-label">In the past 4 weeks, how often have you felt restless or fidgety?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingRestless" name="feelingRestless" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingDepressed" class="col-sm-3 control-label">In the past 4 weeks, how often have you felt so depressed that nothing could cheer you up?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingDepressed" name="feelingDepressed" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingTired" class="col-sm-3 control-label">In the past 4 weeks, how often have you felt that everything was an effort?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingTired" name="feelingTired" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingWorthless" class="col-sm-3 control-label">In the past 4 weeks, how often have you felt worthless?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingWorthless" name="feelingWorthless" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingWorriedAboutCondition" class="col-sm-3 control-label">In the past 4 weeks, how often have you worried that your condition would get worse?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingWorriedAboutCondition" name="feelingWorriedAboutCondition" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feelingWorriedAboutTreatment" class="col-sm-3 control-label">In the past 4 weeks, how often have you worried about long-term effects of your treatment?</label>
-                        <div class="col-sm-9">
-                            <select id="feelingWorriedAboutTreatment" name="feelingWorriedAboutTreatment" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="barrierPhysical" class="col-sm-3 control-label">In the past 4 weeks, how often did your physical health interfere with your social activities with family, friends, neighbors or social groups?</label>
-                        <div class="col-sm-9">
-                            <select id="barrierPhysical" name="barrierPhysical" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="barrierEmotional" class="col-sm-3 control-label">In the past 4 weeks, how often did your emotional problems interfere with your social activities with family, friends, neighbors or social groups?</label>
-                        <div class="col-sm-9">
-                            <select id="barrierEmotional" name="barrierEmotional" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="neededSupportFriends" class="col-sm-3 control-label">In the past 4 weeks, how often have you needed more emotional support from your friends?</label>
-                        <div class="col-sm-9">
-                            <select id="neededSupportFriends" name="neededSupportFriends" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="neededSupportFamily" class="col-sm-3 control-label">In the past 4 weeks, how often have you needed more emotional support from your family?</label>
-                        <div class="col-sm-9">
-                            <select id="neededSupportFamily" name="neededSupportFamily" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="barrierSexLife" class="col-sm-3 control-label">In the past 4 weeks, how often have your illness or treatment interfered with your sex life?</label>
-                        <div class="col-sm-9">
-                            <select id="barrierSexLife" name="barrierSexLife" class="form-control">
-                                <option>none of the time</option>
-                                <option>a little of the time</option>
-                                <option>some of the time</option>
-                                <option>most of the time</option>
-                                <option>all the time</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
             </div>
-        </div>
-    </header>
-
-    <!-- jQuery -->
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{{ url_for('static', filename='js/grayscale.js') }}"></script>
-
-    <script src="{{ url_for('static', filename='js/username.js') }}"></script>
-</body>
-
-</html>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedTypeOfActivities" class="col-md-3 control-label">In the past 4 weeks, how much has
+                    your
+                    health limited you in the type of work or other activities you can do?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedTypeOfActivities" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedActivities" class="col-md-3 control-label">In the past 4 weeks, how much has your
+                    health
+                    limited you in doing your work or other activities?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedActivities" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedWalkingInside" class="col-md-3 control-label">In the past 4 weeks, how much has your
+                    health limited you in walking inside your house without the use of aids or assistance?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedWalkingInside" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedWalkingOutside" class="col-md-3 control-label">In the past 4 weeks, how much has your
+                    health limited you in walking outside your house for at least 10 minutes without the use of aids or
+                    assistance?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedWalkingOutside" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedCivilizedEating" class="col-md-3 control-label">In the past 4 weeks, how much has
+                    your
+                    health limited you in using a knife and fork?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedCivilizedEating" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedDressing" class="col-md-3 control-label">In the past 4 weeks, how much has your
+                    health
+                    limited you in dressing yourself, including tying shoelaces and fastening buttons?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedDressing" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedChores" class="col-md-3 control-label">In the past 4 weeks, how much has your health
+                    limited you in doing moderate work around the house like vacuuming, sweeping floors, or carrying in
+                    groceries?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedChores" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedHygiene" class="col-md-3 control-label">In the past 4 weeks, how much has your health
+                    limited you in taking care of your personal needs? (combing hair, using toilet, bathing)</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedHygiene" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedTossingAndTurning" class="col-md-3 control-label">In the past 4 weeks, how much has
+                    your
+                    health limited you in turning from side to side in bed?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedTossingAndTurning" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="limitedBedClimbing" class="col-md-3 control-label">In the past 4 weeks, how much has your
+                    health
+                    limited you in getting in and out of bed?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="limitedBedClimbing" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingNervous" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+                    nervous?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingNervous" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingHopeless" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+                    hopeless?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingHopeless" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingRestless" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+                    restless or fidgety?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingRestless" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingDepressed" class="col-md-3 control-label">In the past 4 weeks, how often have you
+                    felt so
+                    depressed that nothing could cheer you up?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingDepressed" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingTired" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+                    that
+                    everything was an effort?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingTired" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingWorthless" class="col-md-3 control-label">In the past 4 weeks, how often have you
+                    felt
+                    worthless?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingWorthless" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingWorriedAboutCondition" class="col-md-3 control-label">In the past 4 weeks, how often
+                    have
+                    you worried that your condition would get worse?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingWorriedAboutCondition" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="feelingWorriedAboutTreatment" class="col-md-3 control-label">In the past 4 weeks, how often
+                    have
+                    you worried about long-term effects of your treatment?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="feelingWorriedAboutTreatment" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="barrierPhysical" class="col-md-3 control-label">In the past 4 weeks, how often did your
+                    physical
+                    health interfere with your social activities with family, friends, neighbors or social
+                    groups?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="barrierPhysical" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="barrierEmotional" class="col-md-3 control-label">In the past 4 weeks, how often did your
+                    emotional problems interfere with your social activities with family, friends, neighbors or social
+                    groups?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="barrierEmotional" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="neededSupportFriends" class="col-md-3 control-label">In the past 4 weeks, how often have you
+                    needed more emotional support from your friends?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="neededSupportFriends" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="neededSupportFamily" class="col-md-3 control-label">In the past 4 weeks, how often have you
+                    needed more emotional support from your family?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="neededSupportFamily" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <label for="barrierSexLife" class="col-md-3 control-label">In the past 4 weeks, how often have your
+                    illness
+                    or treatment interfered with your sex life?</label>
+                <div class="col-md-9" style="align-self: center;">
+                    {% with slider_name="barrierSexLife" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="col-md-offset-3">
+                <button type="submit" class="col-md-9 btn btn-block btn-fill btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="space" style="margin-top: 3em"></div>
+{% endblock %}
