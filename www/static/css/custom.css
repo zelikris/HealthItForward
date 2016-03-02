@@ -1,0 +1,4 @@
+.navbar:not(.navbar-transparent).navbar-ct-primary {
+    background-color: #eb7f00;
+    background-color: rgba(235, 127, 0, 0.98);
+}

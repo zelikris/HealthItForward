@@ -64,7 +64,7 @@ class JWTSessionInterface(SessionInterface):
         try:
             session_data = JWTSessionInterface.jwt_decode(app.secret_key, val)
             if session_data.get('iss') != 'ao' or session_data.get('nbf') > int(datetime.utcnow().timestamp()) or \
-                    session_data.get('exp') < int(datetime.utcnow().timestamp()):
+                            session_data.get('exp') < int(datetime.utcnow().timestamp()):
                 raise JWTSessionInterface.BadTokenException()
             return JWTSession(session_data)
         except JWTSessionInterface.BadTokenException:
