@@ -147,9 +147,15 @@ def index_page():
     return render_template('index.html')
 
 
-@app.route('/donate')
+@app.route('/donate', methods=['GET'])
 def donate_page():
     return render_template('donate.html')
+
+
+@app.route('/donate', methods=['POST'])
+def donate():
+    flash(u'Thanks for donating!', 'success')
+    return donate_page()
 
 
 if __name__ == '__main__':
