@@ -1,3 +1,5 @@
+import config
+
 import time
 
 import re
@@ -9,7 +11,7 @@ from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import BIGINT, VARCHAR, CHAR
 from sqlalchemy.types import BLOB
 
-session = scoped_session(sessionmaker(bind=create_engine('mysql+pymysql://root@localhost/ao', echo=True)))
+session = scoped_session(sessionmaker(bind=create_engine(config.db_url, echo=True)))
 
 
 class Base(object):
