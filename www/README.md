@@ -24,7 +24,7 @@ the repository or something like that.
 2. If you have not yet done so in this terminal window, activate
    the virtual environment. On OS X or Linux,
    `source env/bin/activate`. On Windows, `env\Scripts\activate`.
-3. Run the server with `python app.py`. The server will automatically
+3. Run the server with `python main.py`. The server will automatically
    reload any changed files, provided that they were saved without
    syntax errors or other problems. If the server stops for this
    reason, you can always start it again by re-running this command.
