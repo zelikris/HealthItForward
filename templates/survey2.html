@@ -3,241 +3,265 @@
 {% block content %}
     <div class="container">
         <form class="form-horizontal register-page" role="form" method="post">
-            <h3 style="text-align:center">Quality of Life Survey</h3>
+            <h3>Quality of Life Survey</h3>
             <br>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedAccomplishing" class="col-md-3 control-label">In the past 4 weeks, how much has your
+            <p style="font-size:15px">Think back over the past 4 weeks:</p>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedAccomplishing" class="col-md-5 control-label">How much has your
                     health limited you in accomplishing as much as you would like to?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedAccomplishing" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedTypeOfActivities" class="col-md-3 control-label">In the past 4 weeks, how much has
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedTypeOfActivities" class="col-md-5 control-label">How much has
                     your health limited you in the type of work or other activities you can do?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedTypeOfActivities" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedActivities" class="col-md-3 control-label">In the past 4 weeks, how much has your
-                    health
-                    limited you in doing your work or other activities?</label>
-                <div class="col-md-9" style="align-self: center;">
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedActivities" class="col-md-5 control-label">How much has your
+                    health limited you in doing your work or other activities?</label>
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedActivities" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedWalkingInside" class="col-md-3 control-label">In the past 4 weeks, how much has your
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedWalkingInside" class="col-md-5 control-label">How much has your
                     health limited you in walking inside your house without the use of aids or assistance?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedWalkingInside" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedWalkingOutside" class="col-md-3 control-label">In the past 4 weeks, how much has your
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedWalkingOutside" class="col-md-5 control-label">How much has your
                     health limited you in walking outside your house for at least 10 minutes without the use of aids or
                     assistance?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedWalkingOutside" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedCivilizedEating" class="col-md-3 control-label">In the past 4 weeks, how much has
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedCivilizedEating" class="col-md-5 control-label">How much has
                     your
                     health limited you in using a knife and fork?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedCivilizedEating" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedDressing" class="col-md-3 control-label">In the past 4 weeks, how much has your
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedDressing" class="col-md-5 control-label">How much has your
                     health
                     limited you in dressing yourself, including tying shoelaces and fastening buttons?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedDressing" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedChores" class="col-md-3 control-label">In the past 4 weeks, how much has your health
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedChores" class="col-md-5 control-label">How much has your health
                     limited you in doing moderate work around the house like vacuuming, sweeping floors, or carrying in
                     groceries?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedChores" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedHygiene" class="col-md-3 control-label">In the past 4 weeks, how much has your health
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedHygiene" class="col-md-5 control-label">How much has your health
                     limited you in taking care of your personal needs? (combing hair, using toilet, bathing)</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedHygiene" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedTossingAndTurning" class="col-md-3 control-label">In the past 4 weeks, how much has
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedTossingAndTurning" class="col-md-5 control-label">How much has
                     your
                     health limited you in turning from side to side in bed?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedTossingAndTurning" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="limitedBedClimbing" class="col-md-3 control-label">In the past 4 weeks, how much has your
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="limitedBedClimbing" class="col-md-5 control-label">How much has your
                     health
                     limited you in getting in and out of bed?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="limitedBedClimbing" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingNervous" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingNervous" class="col-md-5 control-label">How often have you felt
                     nervous?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingNervous" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingHopeless" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingHopeless" class="col-md-5 control-label">How often have you felt
                     hopeless?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingHopeless" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingRestless" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingRestless" class="col-md-5 control-label">How often have you felt
                     restless or fidgety?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingRestless" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingDepressed" class="col-md-3 control-label">In the past 4 weeks, how often have you
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingDepressed" class="col-md-5 control-label">How often have you
                     felt so
                     depressed that nothing could cheer you up?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingDepressed" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingTired" class="col-md-3 control-label">In the past 4 weeks, how often have you felt
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingTired" class="col-md-5 control-label">How often have you felt
                     that
                     everything was an effort?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingTired" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingWorthless" class="col-md-3 control-label">In the past 4 weeks, how often have you
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingWorthless" class="col-md-5 control-label">How often have you
                     felt
                     worthless?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingWorthless" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingWorriedAboutCondition" class="col-md-3 control-label">In the past 4 weeks, how often
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingWorriedAboutCondition" class="col-md-5 control-label">How often
                     have
                     you worried that your condition would get worse?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingWorriedAboutCondition" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="feelingWorriedAboutTreatment" class="col-md-3 control-label">In the past 4 weeks, how often
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="feelingWorriedAboutTreatment" class="col-md-5 control-label">How often
                     have
                     you worried about long-term effects of your treatment?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="feelingWorriedAboutTreatment" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="barrierPhysical" class="col-md-3 control-label">In the past 4 weeks, how often did your
-                    physical
-                    health interfere with your social activities with family, friends, neighbors or social
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="barrierPhysical" class="col-md-5 control-label">How often did your
+                    physical health interfere with your social activities with family, friends, neighbors or social
                     groups?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="barrierPhysical" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="barrierEmotional" class="col-md-3 control-label">In the past 4 weeks, how often did your
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="barrierEmotional" class="col-md-5 control-label">How often did your
                     emotional problems interfere with your social activities with family, friends, neighbors or social
                     groups?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="barrierEmotional" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="neededSupportFriends" class="col-md-3 control-label">In the past 4 weeks, how often have you
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="neededSupportFriends" class="col-md-5 control-label">How often have you
                     needed more emotional support from your friends?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="neededSupportFriends" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="neededSupportFamily" class="col-md-3 control-label">In the past 4 weeks, how often have you
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="neededSupportFamily" class="col-md-5 control-label">How often have you
                     needed more emotional support from your family?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="neededSupportFamily" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="form-group" style="display: flex; justify-content: center;">
-                <label for="barrierSexLife" class="col-md-3 control-label">In the past 4 weeks, how often have your
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="barrierSexLife" class="col-md-5 control-label">How often have your
                     illness
                     or treatment interfered with your sex life?</label>
-                <div class="col-md-9" style="align-self: center;">
+                <div class="col-md-5" style="align-self: center;">
                     {% with slider_name="barrierSexLife" %}
                         {% include "components/onetofiveslider.html" %}
                     {% endwith %}
                 </div>
             </div>
-            <div class="col-md-offset-3">
+            <div class="space" style="margin-top: 3em"></div>
+            <div class="col-md-offset-8">
                 <button type="submit" class="col-md-9 btn btn-block btn-fill btn-primary">Submit</button>
             </div>
         </form>
