@@ -3,7 +3,8 @@
 {% block content %}
     <div class="container">
         <form class="form-horizontal register-page" role="form" method="post">
-            <h4>Quality of Life Survey</h4>
+            <h3 style="text-align:center">Quality of Life Survey</h3>
+            <br>
             <div class="form-group" style="display: flex; justify-content: center;">
                 <label for="limitedAccomplishing" class="col-md-3 control-label">In the past 4 weeks, how much has your
                     health limited you in accomplishing as much as you would like to?</label>
@@ -15,8 +16,7 @@
             </div>
             <div class="form-group" style="display: flex; justify-content: center;">
                 <label for="limitedTypeOfActivities" class="col-md-3 control-label">In the past 4 weeks, how much has
-                    your
-                    health limited you in the type of work or other activities you can do?</label>
+                    your health limited you in the type of work or other activities you can do?</label>
                 <div class="col-md-9" style="align-self: center;">
                     {% with slider_name="limitedTypeOfActivities" %}
                         {% include "components/onetofiveslider.html" %}

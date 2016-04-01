@@ -3,9 +3,15 @@
 {% block content %}
     <div class="container">
         <h4>Surveys</h4>
-        <p>Click any survey below to take it and provide information to HealthItForward about how you're doing.</p>
-        <a href="{{ url_for('survey1_page') }}">General Health Info Survey</a><br>
-        <a href="{{ url_for('survey2_page') }}">Quality of Life Survey</a>
+        <p>Click any survey below to take it to provide information to HealthItForward about how you're doing.</p>
+        <div class="list-group col-md-5">
+	        <a href="{{ url_for('survey1_page') }}" class="list-group-item">
+	        	<strong>General Health Info Survey</strong>
+	    	</a>
+	    	<a href="{{ url_for('survey2_page') }}" class="list-group-item">
+	        	<strong>Quality of Life Survey</strong>
+	        </a>
+    	</div>
     </div>
     <div class="space"></div>
 {% endblock %}
