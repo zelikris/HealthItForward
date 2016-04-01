@@ -1,64 +1,85 @@
 {% extends "base.html" %}
 {% block title %}General Health Info Survey{% endblock title %}
 {% block content %}
+
     <div class="container">
         <form class="form-horizontal" role="form" method="post">
-            <h4>General Health Info Survey</h4>
+            <h4>General Health Info Survey</h4> <br>
             <div class="form-group">
                 <label for="height" class="col-md-3 control-label">Height</label>
-                <div class="col-md-9">
-                    <select id="height" name="height" class="form-control">
-                        <option>&lt; 49 in</option>
-                        <option>49 - 54 in</option>
-                        <option>55 - 60 in</option>
-                        <option>61 - 66 in</option>
-                        <option>67 - 72 in</option>
-                        <option>73 - 78 in</option>
-                        <option>&gt; 78 in</option>
-                    </select>
+                <div class="col-md-2">
+                    <input id="ft-input" type="text" name="bp" class="form-control">
+                </div>
+                <div class="col-md-1" id="unit-label">
+                    <strong>ft</strong>
+                </div>
+                <div class="col-md-2" id="in-input">
+                    <input id="in-input" type="text" name="bp" class="form-control">
+                </div>
+                <div class="col-md-1" id="unit-label">
+                    <strong>in</strong>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="weight" class="col-md-3 control-label">Weight</label>
-                <div class="col-md-9">
-                    <select id="weight" name="weight" class="form-control">
-                        <option>&lt;= 85 lb</option>
-                        <option>86 - 95 lb</option>
-                        <option>96 - 105 lb</option>
-                        <option>106 - 115 lb</option>
-                        <option>116 - 125 lb</option>
-                        <option>126 - 135 lb</option>
-                        <option>136 - 145 lb</option>
-                        <option>146 - 155 lb</option>
-                        <option>156 - 165 lb</option>
-                        <option>166 - 175 lb</option>
-                        <option>176 - 185 lb</option>
-                        <option>186 - 195 lb</option>
-                        <option>196 - 205 lb</option>
-                        <option>206 - 215 lb</option>
-                        <option>216 - 225 lb</option>
-                        <option>226 - 235 lb</option>
-                        <option>236 - 245 lb</option>
-                        <option>246 - 255 lb</option>
-                        <option>256 - 265 lb</option>
-                        <option>266 - 275 lb</option>
-                        <option>276 - 285 lb</option>
-                        <option>286 - 295 lb</option>
-                        <option>&gt;= 295 lb</option>
-                    </select>
+                <div class="col-md-2">
+                    <input id="lb-input" type="text" name="bp" class="form-control">
+                </div>
+                <div class="col-md-1" id="unit-label">
+                    <strong>lb</strong>
+                </div>
+                <div class="col-md-2" id="in-input">
+                    <input id="lb-input" type="text" name="bp" class="form-control">
+                </div>
+                <div class="col-md-1" id="unit-label">
+                    <strong>oz (optional)</strong>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="bp" class="col-md-3 control-label">Blood Pressure</label>
-                <div class="col-md-9" style="text-align: left">
+                <div class="col-md-2" style="text-align: left">
                     <input type="text" id="bp" name="bp" placeholder="120/80" class="form-control">
                 </div>
+
+                <div class="container">
+                  <!-- Trigger the modal with a button -->
+                  <button type="button" class="btn btn-info btn" data-toggle="modal" data-target="#myModal">?</button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title" id="modal-title">Blood Pressure</h4><hr>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                The first (or top) number is your systolic blood pressure. It is the highest level your blood pressure 
+                                reaches when your heart beats.
+                            </p>
+                            <br>
+                            <p>
+                                The second (or bottom) number is your diastolic blood pressure. It is the lowest level your blood pressure reaches as your heart relaxes between beats.
+                            </p>
+                            <img src="{{ url_for('static', filename = 'css/images/blood_pressure.png') }}" alt="Blood Pressure" width="360" height="400"style="display: block; margin: 0 auto;">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+            </div>
             </div>
 
             <div class="form-group">
-                <label for="hospitalized" class="col-md-3 control-label">Have you ever been hospitalized?</label>
+                <label for="hospitalized" class="col-md-3 control-label">Have you been hospitalized in the last 6 months?</label>
                 <div class="col-md-9" style="text-align: left">
                     {% with radio_name="hospitalized" %}
                         {% include "components/yesnoradio.html" %}
@@ -67,7 +88,7 @@
             </div>
 
             <div class="form-group">
-                <label for="smoke" class="col-md-3 control-label">Do you smoke?</label>
+                <label for="smoke" class="col-md-3 control-label">Do you smoke on a daily basis?</label>
                 <div class="col-md-9" style="text-align: left">
                     {% with radio_name="smoke" %}
                         {% include "components/yesnoradio.html" %}
@@ -76,7 +97,7 @@
             </div>
 
             <div class="form-group">
-                <label for="livesmoke" class="col-md-3 control-label">Do you live with someone else that smokes?</label>
+                <label for="livesmoke" class="col-md-3 control-label">Do you live with someone that smokes on a daily basis?</label>
                 <div class="col-md-9" style="text-align: left">
                     {% with radio_name="livesmoke" %}
                         {% include "components/yesnoradio.html" %}
@@ -85,7 +106,7 @@
             </div>
 
             <div class="form-group">
-                <label for="alcohol" class="col-md-3 control-label">Do you drink alcohol?</label>
+                <label for="alcohol" class="col-md-3 control-label">Do you consume alcohol at least 3 times per week?</label>
                 <div class="col-md-9" style="text-align: left">
                     {% with radio_name="alcohol" %}
                         {% include "components/yesnoradio.html" %}
@@ -94,8 +115,8 @@
             </div>
 
             <div class="form-group">
-                <label for="livealcohol" class="col-md-3 control-label">Do you live with someone else that drinks
-                    alcohol?</label>
+                <label for="livealcohol" class="col-md-3 control-label">Do you live with someone that drinks
+                    alcohol at least 3 times per week?</label>
                 <div class="col-md-9" style="text-align: left">
                     {% with radio_name="livealcohol" %}
                         {% include "components/yesnoradio.html" %}

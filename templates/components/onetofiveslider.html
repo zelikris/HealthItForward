@@ -1,6 +1,16 @@
 <div id="{{ slider_name }}_slider"></div>
 <input type="hidden" value="1" id="{{ slider_name }}_hiddeninput" name="{{ slider_name }}">
-<p id="{{ slider_name }}_value" style="margin-top: 8px;">none of the time</p>
+
+<a class="btn btn-sm btn-danger" href="#" style="float:left">
+    <i class="fa fa-frown-o fa-2x"></i>
+</a>
+
+<a class="btn btn-sm btn-success" href="#" style="float:right">
+    <i class="fa fa-smile-o fa-2x"></i>
+</a>
+
+
+<p id="{{ slider_name }}_value" style="margin-top: 8px;text-align:center">none of the time</p>
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {

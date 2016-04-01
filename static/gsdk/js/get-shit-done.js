@@ -7,7 +7,7 @@ $(document).ready(function(){
       
     /*      Activate regular switches        */
     $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
-    
+
     $('[data-toggle="search"]').click(function(){
         if(searchVisible == 0){
             searchVisible = 1;
