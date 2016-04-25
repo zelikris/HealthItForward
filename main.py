@@ -163,9 +163,21 @@ def survey1_page():
     return render_template('survey1.html')
 
 
+@app.route('/survey/1', methods=['POST'])
+def survey1():
+    flash(u'Successfully submitted.', 'success')
+    return redirect(url_for('surveys_page'))
+
+
 @app.route('/survey/2')
 def survey2_page():
     return render_template('survey2.html')
+
+
+@app.route('/survey/2', methods=['POST'])
+def survey2():
+    flash(u'Successfully submitted.', 'success')
+    return redirect(url_for('surveys_page'))
 
 
 @app.route('/')
