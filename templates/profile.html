@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Surveys{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h4 style="margin-top: 0">Profile</h4>
+            <div class="space" style="margin-top: 3em"></div>
+            <form class="form-horizontal" method="get">
+                <div class="form-group col-md-7">
+                    <label for="dob" class="col-md-3 control-label">Date of birth</label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" id="dob" name="dob"
+                               placeholder="Date of birth" value="{{ formdata.dob }}">
+                    </div>
+                </div>
+                <div class="form-group col-md-7" method="get">
+                    <label for="sex" class="col-md-3 control-label">Sex</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="sex" name="sex">
+                            {% for sex_code, sex_name in const.sex_codes.items() %}
+                                {% if formdata.sex and country_code == formdata.sex %}
+                                    <option value="{{ sex_code }}" selected>{{ sex_name }}</option>
+                                {% else %}
+                                    <option value="{{ sex_code }}">{{ sex_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="country" class="col-md-3 control-label">Country</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="country" name="country">
+                            {% for country_code, country_name in const.country_codes_by_name %}
+                                {% if (not formdata.country and country_code == 'US') or country_code == formdata.country %}
+                                    <option value="{{ country_code }}" selected>{{ country_name }}</option>
+                                {% else %}
+                                    <option value="{{ country_code }}">{{ country_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="country" class="col-md-3 control-label">Race</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="race" name="race">
+                            {% for race_code, race_name in const.race_codes.items() %}
+                                {% if (not formdata.race and race_code == 'W') or race_code == formdata.race %}
+                                    <option value="{{ race_code }}" selected>{{ race_name }}</option>
+                                {% else %}
+                                    <option value="{{ race_code }}">{{ race_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-7">
+                    <label class="col-md-3 control-label">Introduce Yourself to the Community</label>
+                    <textarea class="col-md-9" placeholder="What would you like other to know about you?"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-3 col-md-offset-11">
+                    <button type="submit" class="btn btn-block btn-fill btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

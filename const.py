@@ -3,6 +3,16 @@ sex_codes = {
     "F": "Female"
 }
 
+race_codes = {
+    "W": "White",
+    "B": "Black or African American",
+    "A": "Asian",
+    "NH":"Native Hawaiian or other Pacific Islander",
+    "AI":"American Indian or Alaskan Native",
+    "M": "Mixed",
+    "PN":"I prefer not to answer"
+}
+
 country_codes = {
     "AF": "Afghanistan",
     "AX": "Åland Islands",

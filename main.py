@@ -40,10 +40,10 @@ def inject_template_data():
     return dict(const=const, user=g.user)
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET'])
 @sessions.login_required
-def profile():
-    return redirect(url_for('index_page'))  # TODO
+def profile(formdata=None):
+    return render_template('profile.html', formdata=formdata) 
 
 
 @app.route('/surveys')
