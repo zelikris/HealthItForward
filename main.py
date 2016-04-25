@@ -144,16 +144,13 @@ def register():
         flash(u'There is already an account associated with this email address.', 'danger')
         return register_page(formdata=request.form)
     user = db.User()
-    # TODO: fix this shit
     user.screen_name = uuid.uuid4().hex
     user.name = request.form['name']
     user.email = request.form['email']
     user.password_hash = pbkdf2.gen(request.form['password'])
     user.sex = request.form['sex']
     user.birthday = request.form['dob'].replace('-', '')
-    # TODO: fix this shit too
     user.picture_id = 2
-    # TODO: country
     db.session.add(user)
     db.session.commit()
 
