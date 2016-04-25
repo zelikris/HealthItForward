@@ -1,13 +1,17 @@
 import datetime
 import uuid
-from binascii import unhexlify
-from urllib.parse import urljoin
+from binascii import unhexlify, hexlify
+from urllib.parse import urljoin, parse_qs, urlencode
 
+import config
 import const
 import db
 import pbkdf2
 import sessions
-from flask import Flask, render_template, request, session, g, redirect, url_for, flash
+import hmac
+import hashlib
+import base64
+from flask import Flask, render_template, request, session, g, redirect, url_for, flash, abort
 from htmlmin.main import minify
 
 app = Flask(__name__)
@@ -37,7 +41,7 @@ def teardown_db_session(exception=None):
 
 @app.context_processor
 def inject_template_data():
-    return dict(const=const, user=g.user)
+    return dict(const=const, user=g.user, discourse_url=config.discourse_url)
 
 
 @app.route('/profile', methods=['GET'])
@@ -57,6 +61,31 @@ def surveys_page():
 def logout():
     session.clear()
     return redirect(url_for('index_page'))
+
+
+@app.route('/discourse/login')
+@sessions.login_required
+def discourse_login():
+    if 'sso' not in request.args:
+        return redirect(urljoin(config.discourse_url, '/login'))
+    h = hmac.new(config.discourse_sso_secret.encode('utf-8'), request.args['sso'].encode('utf-8'), hashlib.sha256)
+    digest = h.digest()
+    given = unhexlify(request.args['sig'])
+    if not hmac.compare_digest(digest, given):
+        abort(403)
+    payload = base64.b64decode(request.args['sso'])
+    payload = parse_qs(payload.decode('utf-8'))
+    payload = {'nonce': payload['nonce']}
+    payload['email'] = g.user.email
+    payload['require_activation'] = 'true'
+    payload['external_id'] = g.user.id
+    payload['username'] = g.user.screen_name
+    payload = urlencode(payload, doseq=True)
+    payload = base64.b64encode(payload.encode('utf-8'))
+    h = hmac.new(config.discourse_sso_secret.encode('utf-8'), payload, hashlib.sha256)
+    payload = payload.decode('utf-8')
+    digest = hexlify(h.digest()).decode('utf-8')
+    return redirect(urljoin(config.discourse_url, '/session/sso_login?sso={0}&sig={1}'.format(payload, digest)))
 
 
 @app.route('/login', methods=['GET'])
@@ -115,16 +144,13 @@ def register():
         flash(u'There is already an account associated with this email address.', 'danger')
         return register_page(formdata=request.form)
     user = db.User()
-    # TODO: fix this shit
     user.screen_name = uuid.uuid4().hex
     user.name = request.form['name']
     user.email = request.form['email']
     user.password_hash = pbkdf2.gen(request.form['password'])
     user.sex = request.form['sex']
     user.birthday = request.form['dob'].replace('-', '')
-    # TODO: fix this shit too
     user.picture_id = 2
-    # TODO: country
     db.session.add(user)
     db.session.commit()
 
@@ -137,9 +163,21 @@ def survey1_page():
     return render_template('survey1.html')
 
 
+@app.route('/survey/1', methods=['POST'])
+def survey1():
+    flash(u'Successfully submitted.', 'success')
+    return redirect(url_for('surveys_page'))
+
+
 @app.route('/survey/2')
 def survey2_page():
     return render_template('survey2.html')
+
+
+@app.route('/survey/2', methods=['POST'])
+def survey2():
+    flash(u'Successfully submitted.', 'success')
+    return redirect(url_for('surveys_page'))
 
 
 @app.route('/')

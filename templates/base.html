@@ -49,11 +49,13 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{ url_for('donate_page') }}">Donate</a></li>
+                            <li><a href="{{ discourse_url }}">Forum</a></li>
                             <li><a href="{{ url_for('logout') }}">Log out</a></li>
                         </ul>
                     {% else %}
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{ url_for('donate_page') }}">Donate</a></li>
+                            <li><a href="{{ discourse_url }}">Forum</a></li>
                             <li><a href="{{ url_for('login_page') }}">Sign In / Register</a></li>
                         </ul>
                     {% endif %}
