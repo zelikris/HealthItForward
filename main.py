@@ -41,7 +41,7 @@ def teardown_db_session(exception=None):
 
 @app.context_processor
 def inject_template_data():
-    return dict(const=const, user=g.user)
+    return dict(const=const, user=g.user, discourse_url=config.discourse_url)
 
 
 @app.route('/profile')
@@ -66,7 +66,8 @@ def logout():
 @app.route('/discourse/login')
 @sessions.login_required
 def discourse_login():
-
+    if 'sso' not in request.args:
+        return redirect(urljoin(config.discourse_url, '/login'))
     h = hmac.new(config.discourse_sso_secret.encode('utf-8'), request.args['sso'].encode('utf-8'), hashlib.sha256)
     digest = h.digest()
     given = unhexlify(request.args['sig'])
@@ -74,7 +75,6 @@ def discourse_login():
         abort(403)
     payload = base64.b64decode(request.args['sso'])
     payload = parse_qs(payload.decode('utf-8'))
-    print(payload)
     payload = {'nonce': payload['nonce']}
     payload['email'] = g.user.email
     payload['require_activation'] = 'true'
