@@ -11,6 +11,7 @@ from werkzeug.datastructures import CallbackDict
 
 
 def login_required(func):
+    """Wrap a function that requires login."""
     @wraps(func)
     def wrapper(*args, **kwargs):
         if not g.user:
@@ -21,6 +22,7 @@ def login_required(func):
 
 
 class JWTSession(CallbackDict, SessionMixin):
+    """Session backed by a JWT stored in a cookie."""
     def __init__(self, initial=None):
         def on_update(self):
             self.modified = True
@@ -30,11 +32,19 @@ class JWTSession(CallbackDict, SessionMixin):
 
 
 class JWTSessionInterface(SessionInterface):
+    """Interface to JWT stored in a cookie."""
+
     class BadTokenException(Exception):
-        """Raised when a JWT signature is invalid"""
+        """Raised when a JWT signature is invalid."""
 
     @staticmethod
     def jwt_encode(key, claims):
+        """Encode a dictionary of claims into a JWT.
+
+        Keyword arguments:
+        key -- the key to sign with
+        claims -- the claims to sign
+        """
         hmac_maker = hmac.new(key, digestmod=hashlib.sha256)
         header = base64.urlsafe_b64encode('{"typ":"JWT","alg":"HS256"}'.encode('utf-8')).decode('ascii')
         claims = base64.urlsafe_b64encode(json.dumps(claims).encode('utf-8')).decode('ascii')
@@ -45,6 +55,12 @@ class JWTSessionInterface(SessionInterface):
 
     @staticmethod
     def jwt_decode(key, encoded):
+        """Decode a dictionary of claims from a JWT.
+
+        Keyword arguments:
+        key -- the key to sign with
+        encoded -- the encoded JWT
+        """
         header, claims, correct_digest = encoded.split('.')
         payload = header + '.' + claims
         hmac_maker = hmac.new(key, digestmod=hashlib.sha256)
@@ -56,6 +72,7 @@ class JWTSessionInterface(SessionInterface):
         return json.loads(claims)
 
     def open_session(self, app, request):
+        """Create or load the session."""
         if not app.secret_key:
             return None
         val = request.cookies.get(app.session_cookie_name)
@@ -71,6 +88,7 @@ class JWTSessionInterface(SessionInterface):
             return JWTSession()
 
     def save_session(self, app, session, response):
+        """Save the session to a cookie."""
         if not app.secret_key:
             return
 
