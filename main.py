@@ -32,9 +32,7 @@ def before_request():
     """Look up user from the database before calling request handler."""
     g.user = None
     if 'sub' in session:
-        g.user = db.session.query(db.User)
-                    .filter_by(email=session['sub'])
-                    .one_or_none()
+        g.user = db.session.query(db.User).filter_by(email=session['sub']).one_or_none()
 
 
 @app.after_request
@@ -129,9 +127,7 @@ def login_page():
 @app.route('/login', methods=['POST'])
 def login():
     """Process a login request."""
-    user = db.session.query(db.User)
-                .filter_by(email=request.form['email'])
-                .one_or_none()
+    user = db.session.query(db.User).filter_by(email=request.form['email']).one_or_none()
 
     # Perform the entire verification (including digest computation) even if
     # the user doesn't exist. This helps to prevent timing attacks against the
