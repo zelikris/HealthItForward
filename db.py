@@ -15,6 +15,8 @@ session = scoped_session(sessionmaker(bind=create_engine(config.db_url, echo=Tru
 
 
 class Base(object):
+    """Base object for all database classes."""
+
     @declared_attr
     def __tablename__(cls):
         s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', cls.__name__)
