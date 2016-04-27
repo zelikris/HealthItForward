@@ -78,7 +78,7 @@ class User(Base):
     birthday = Column(CHAR(8), default='')
     picture_id = Column(BIGINT, ForeignKey('picture.id'))
     race = Column(CHAR(3), default='')
-    intro = Column(TEXT)
+    intro = Column(TEXT, default='')
     city = Column(VARCHAR(255), default='')
     state = Column(CHAR(3), default='')
     country = Column(CHAR(3), default='')
