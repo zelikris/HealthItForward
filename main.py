@@ -34,7 +34,8 @@ def before_request():
     g.user_location = None
     if 'sub' in session:
         g.user = db.session.query(db.User).filter_by(email=session['sub']).one_or_none()
-        g.user_location = db.session.query(db.UserLocation).filter_by(user_id=g.user.id).one_or_none()
+        if g.user is not None:
+            g.user_location = db.session.query(db.UserLocation).filter_by(user_id=g.user.id).one_or_none()
 
 
 @app.after_request
@@ -83,6 +84,8 @@ def profile():
     if '@' not in request.form['email']:
         flash(u'Invalid email address.', 'danger')
         return profile_page(formdata=request.form)
+
+    session['sub'] = request.form['email']
 
     db.session.query(db.User).filter_by(email=g.user.email).update({"email": user.email})
     db.session.query(db.User).filter_by(email=g.user.email).update({"sex": user.sex})
@@ -165,7 +168,7 @@ def login_page():
 @app.route('/login', methods=['POST'])
 def login():
     """Process a login request."""
-    user = db.session.query(db.User).filter_by(email=request.form['email'])     .one_or_none()
+    user = db.session.query(db.User).filter_by(email=request.form['email']).one_or_none()
 
     # Perform the entire verification (including digest computation) even if
     # the user doesn't exist. This helps to prevent timing attacks against the
