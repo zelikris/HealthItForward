@@ -21,10 +21,10 @@ app = Flask(__name__)
 app.secret_key = unhexlify('e3d7f0871b236241be434fe4cc789f2e72b970b5a13502488a2d259574911b65')
 app.session_interface = sessions.JWTSessionInterface()
 
-# WARNIN    : DO NOT TURN THIS ON IN PRODUCTION. It will expose a serious security
+# WARNING: DO NOT TURN THIS ON IN PRODUCTION. It will expose a serious security
 # risk that allows anyone hitting an unhandled exception access to a Python
 # console without restrictions (not to mention display of code and stack traces).
-app.debug = True
+app.debug = False
 
 
 @app.before_request
@@ -71,10 +71,10 @@ def profile_page(formdata=None):
 @sessions.login_required
 def profile():
     """Process a profile request."""
-    
+
     user = db.session.query(db.User).filter_by(email=g.user.email).one_or_none()
     user = db.User()
-    
+
     user.email = request.form['email']
     user.sex = request.form['sex']
     user.birthday = request.form['dob'].replace('-', '')
@@ -101,7 +101,7 @@ def profile():
     db.session.commit()
     flash(u'Thanks for updating your profile!', 'success')
     return redirect(url_for('index_page'))
-    
+
 
 @app.route('/surveys')
 @sessions.login_required
