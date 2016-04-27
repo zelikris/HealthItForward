@@ -202,8 +202,12 @@ def register():
     if user is not None:
         flash(u'There is already an account associated with this email address.', 'danger')
         return register_page(formdata=request.form)
+    user = db.session.query(db.User).filter_by(screen_name=request.form['username']).one_or_none()
+    if user is not None:
+        flash(u'That screen name is already taken.', 'danger')
+        return register_page(formdata=request.form)
     user = db.User()
-    user.screen_name = uuid.uuid4().hex
+    user.screen_name = request.form['username']
     user.name = request.form['name']
     user.email = request.form['email']
     user.password_hash = pbkdf2.gen(request.form['password'])
