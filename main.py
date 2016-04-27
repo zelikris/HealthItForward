@@ -248,6 +248,19 @@ def survey2():
     return redirect(url_for('surveys_page'))
 
 
+@app.route('/survey/3')
+def survey3_page():
+    """Render the survey 3 page."""
+    return render_template('survey3.html')
+
+
+@app.route('/survey/3', methods=['POST'])
+def survey3():
+    """Process the survey 3 data."""
+    flash(u'Successfully submitted.', 'success')
+    return redirect(url_for('surveys_page'))
+
+
 @app.route('/')
 def index_page():
     """Render the index page."""
