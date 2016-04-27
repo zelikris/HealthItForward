@@ -1,0 +1,565 @@
+{% extends "base.html" %}
+{% block title %}Quality of Life Survey{% endblock title %}
+{% block content %}
+    <div class="container">
+        <form class="form-horizontal register-page" role="form" method="post">
+            <h3>Quality of Life Survey</h3>
+            <br>
+            <div class="form-group">
+                <label for="diagnosis" class="col-md-3 control-label">Have you been diagnosed with Parkinson’s by a clinician?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="diagnosis" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type" class="col-md-3 control-label">What type of Parkinson's do you have?</label>
+                <div class="col-md-9" style="text-align: left">
+                    <label class="radio">
+                        <input type="radio" name="type" data-toggle="radio" id="type" value="regular">
+                        <i></i>Parkinson's disease
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="type" data-toggle="radio" id="type" value="inherited">
+                        <i></i>inherited (genetic) Parkinson's disease
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="type" data-toggle="radio" id="type" value="drugInduced">
+                        <i></i>drug-induced Parkinsonism
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="type" data-toggle="radio" id="type" value="vascular">
+                        <i></i>vascular Parkinsonism
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="type" data-toggle="radio" id="type" value="unknown">
+                        <i></i>Parkinsonism with unknown cause
+                    </label>
+                </div>
+            </div>
+            <br>
+            <p style="font-size:15px">Think back over the past 4 weeks:</p>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="constipation" class="col-md-5 control-label">How frequently have you experienced constipation?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="constipation" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="digestiveProblems" class="col-md-5 control-label">How frequently have you experienced other digestive problems?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="digestiveProblems" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="urinaryProblems" class="col-md-5 control-label">How frequently have you experienced urinary problems?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="urinaryProblems" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="somnolence" class="col-md-5 control-label">How frequently have you experienced daytime sleepiness?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="somnolence" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="insomnia" class="col-md-5 control-label">How frequently have you experienced insomnia?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="insomnia" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="excessiveSaliva" class="col-md-5 control-label">How frequently have you experienced excessive saliva?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="excessiveSaliva" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="fatigue" class="col-md-5 control-label">How frequently have you experienced fatigue?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="fatigue" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="pain" class="col-md-5 control-label">How frequently have you experienced pain?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="pain" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="sexualDysfunction" class="col-md-5 control-label">How frequently have you experienced sexual dysfunction?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="sexualDysfunction" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="slowMovement" class="col-md-5 control-label">How frequently have you experienced slow movement?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="slowMovement" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="stiffMuscles" class="col-md-5 control-label">How frequently have you experienced stiff muscles?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="stiffMuscles" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="tremors" class="col-md-5 control-label">How frequently have you experienced tremors or shaking?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="tremors" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="faceThroatWeakness" class="col-md-5 control-label">How frequently have you experienced weakness of face and throat muscles?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="faceThroatWeakness" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="walkingDifficulty" class="col-md-5 control-label">How frequently have you experienced difficulty with walking?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="walkingDifficulty" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="balanceDifficulty" class="col-md-5 control-label">How frequently have you experienced difficulty with balance?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="balanceDifficulty" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="lostDexterityCoordination" class="col-md-5 control-label">How frequently have you experienced decreased dexterity or coordination?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="lostDexterityCoordination" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="cramps" class="col-md-5 control-label">How frequently have you experienced muscle or joint cramps?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="cramps" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="oilySkin" class="col-md-5 control-label">How frequently have you experienced oily skin?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="oilySkin" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="increasedSweating" class="col-md-5 control-label">How frequently have you experienced increased sweating?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="increasedSweating" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="freezing" class="col-md-5 control-label">How frequently have you experienced a sudden inability to move?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="freezing" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="anxious" class="col-md-5 control-label">How frequently have you felt anxious?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="anxious" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="depressed" class="col-md-5 control-label">How frequently have you felt depressed?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="depressed" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="memoryLoss" class="col-md-5 control-label">How frequently have you experienced memory loss?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="memoryLoss" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="fearIndecisiveness" class="col-md-5 control-label">How frequently have you felt fear or indecisiveness?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="fearIndecisiveness" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="dementia" class="col-md-5 control-label">How frequently have you experienced dementia?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="dementia" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="space" style="margin-top: 3em"></div>
+            <div class="form-group">
+                <label for="pet" class="col-md-3 control-label">Have you had a PET scan?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="pet" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mri" class="col-md-3 control-label">Have you had a CT or MRI scan?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="mri" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bloodTests" class="col-md-3 control-label">Have you had blood tests?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="bloodTests" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="neurologicalExam" class="col-md-3 control-label">Have you had a neurological exam?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="neurologicalExam" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="space" style="margin-top: 3em"></div>
+            <div class="form-group">
+                <label for="exercise" class="col-md-3 control-label">Has exercise been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="exercise" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="physicalTherapy" class="col-md-3 control-label">Has physical therapy been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="physicalTherapy" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="occupationalTherapy" class="col-md-3 control-label">Has occupational therapy been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="occupationalTherapy" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="deepBrainStimulation" class="col-md-3 control-label">Has deep brain stimulation been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="deepBrainStimulation" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pallidotomy" class="col-md-3 control-label">Has pallidotomy been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="pallidotomy" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="thalomotomy" class="col-md-3 control-label">Has thalomotomy been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="thalomotomy" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="neurotransplantation" class="col-md-3 control-label">Has neurotransplantation been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="neurotransplantation" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="acupuncture" class="col-md-3 control-label">Has acupuncture been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="acupuncture" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="guidedImagery" class="col-md-3 control-label">Has guided imagery been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="guidedImagery" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="chiropractic" class="col-md-3 control-label">Has chiropractic been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="chiropractic" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="yoga" class="col-md-3 control-label">Has yoga been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="yoga" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="hypnosis" class="col-md-3 control-label">Has hypnosis been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="hypnosis" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="biofeedback" class="col-md-3 control-label">Has biofeedback been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="biofeedback" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="aromatherapy" class="col-md-3 control-label">Has aromatherapy been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="aromatherapy" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="relaxation" class="col-md-3 control-label">Has relaxation been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="relaxation" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="massage" class="col-md-3 control-label">Has massaging been used for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="massage" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="space" style="margin-top: 3em"></div>
+            <div class="form-group">
+                <label for="levodopa" class="col-md-3 control-label">Have you taken levodopa for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="levodopa" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="carbidopa" class="col-md-3 control-label">Have you taken carbidopa for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="carbidopa" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="apomorphine" class="col-md-3 control-label">Have you taken apomorphine for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="apomorphine" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pramipexole" class="col-md-3 control-label">Have you taken pramipexole for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="pramipexole" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ropinirole" class="col-md-3 control-label">Have you taken ropinirole for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="ropinirole" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="entacapone" class="col-md-3 control-label">Have you taken entacapone for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="entacapone" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tolcapone" class="col-md-3 control-label">Have you taken tolcapone for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="tolcapone" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rasagiline" class="col-md-3 control-label">Have you taken rasagiline for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="rasagiline" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selegiline" class="col-md-3 control-label">Have you taken selegiline for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="selegiline" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="amantadine" class="col-md-3 control-label">Have you taken amantadine for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="amantadine" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="benztropine" class="col-md-3 control-label">Have you taken benztropine for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="benztropine" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="biperiden" class="col-md-3 control-label">Have you taken biperiden for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="biperiden" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="procyclidine" class="col-md-3 control-label">Have you taken procyclidine for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="procyclidine" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="trihexyphenidyl" class="col-md-3 control-label">Have you taken trihexyphenidyl for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="trihexyphenidyl" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vitaminE" class="col-md-3 control-label">Have you taken vitamin E for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="vitaminE" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="herbalRemedies" class="col-md-3 control-label">Have you taken herbal remedies for treatment?</label>
+                <div class="col-md-9" style="text-align: left">
+                    {% with radio_name="herbalRemedies" %}
+                        {% include "components/yesnoradio.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="space" style="margin-top: 3em"></div>
+            <div class="col-md-offset-8">
+                <button type="submit" class="col-md-9 btn btn-block btn-fill btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="space" style="margin-top: 3em"></div>
+{% endblock %}
