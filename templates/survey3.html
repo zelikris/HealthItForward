@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% block title %}Quality of Life Survey{% endblock title %}
+{% block content %}
+    <div class="container">
+        <form class="form-horizontal register-page" role="form" method="post">
+            <h3>Quality of Life Survey</h3>
+            <br>
+            <p style="font-size:15px">Think back over the past 4 weeks:</p>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="constipation" class="col-md-5 control-label">How frequently have you experienced constipation?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="constipation" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="digestiveProblems" class="col-md-5 control-label">How frequently have you experienced other digestive problems?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="digestiveProblems" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="urinaryProblems" class="col-md-5 control-label">How frequently have you experienced urinary problems?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="urinaryProblems" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="somnolence" class="col-md-5 control-label">How frequently have you experienced daytime sleepiness?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="somnolence" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="insomnia" class="col-md-5 control-label">How frequently have you experienced insomnia?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="insomnia" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="excessiveSaliva" class="col-md-5 control-label">How frequently have you experienced excessive saliva?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="excessiveSaliva" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="fatigue" class="col-md-5 control-label">How frequently have you experienced fatigue?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="fatigue" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="pain" class="col-md-5 control-label">How frequently have you experienced pain?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="pain" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="sexualDysfunction" class="col-md-5 control-label">How frequently have you experienced sexual dysfunction?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="sexualDysfunction" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="slowMovement" class="col-md-5 control-label">How frequently have you experienced slow movement?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="slowMovement" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="stiffMuscles" class="col-md-5 control-label">How frequently have you experienced stiff muscles?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="stiffMuscles" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="tremors" class="col-md-5 control-label">How frequently have you experienced tremors or shaking?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="tremors" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="faceThroatWeakness" class="col-md-5 control-label">How frequently have you experienced weakness of face and throat muscles?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="faceThroatWeakness" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="walkingDifficulty" class="col-md-5 control-label">How frequently have you experienced difficulty with walking?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="walkingDifficulty" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="balanceDifficulty" class="col-md-5 control-label">How frequently have you experienced difficulty with balance?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="balanceDifficulty" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="lostDexterityCoordination" class="col-md-5 control-label">How frequently have you experienced decreased dexterity or coordination?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="lostDexterityCoordination" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="cramps" class="col-md-5 control-label">How frequently have you experienced muscle or joint cramps?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="cramps" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="oilySkin" class="col-md-5 control-label">How frequently have you experienced oily skin?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="oilySkin" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="increasedSweating" class="col-md-5 control-label">How frequently have you experienced increased sweating?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="increasedSweating" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="freezing" class="col-md-5 control-label">How frequently have you experienced a sudden inability to move?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="freezing" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="anxious" class="col-md-5 control-label">How frequently have you felt anxious?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="anxious" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="depressed" class="col-md-5 control-label">How frequently have you felt depressed?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="depressed" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="memoryLoss" class="col-md-5 control-label">How frequently have you experienced memory loss?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="memoryLoss" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="fearIndecisiveness" class="col-md-5 control-label">How frequently have you felt fear or indecisiveness?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="fearIndecisiveness" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: left;">
+                <label for="dementia" class="col-md-5 control-label">How frequently have you experienced dementia?</label>
+                <div class="col-md-5" style="align-self: center;">
+                    {% with slider_name="dementia" %}
+                        {% include "components/onetofiveslider.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="space" style="margin-top: 3em"></div>
+            <div class="col-md-offset-8">
+                <button type="submit" class="col-md-9 btn btn-block btn-fill btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="space" style="margin-top: 3em"></div>
+{% endblock %}
