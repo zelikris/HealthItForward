@@ -34,9 +34,6 @@ def before_request():
     g.user_location = None
     if 'sub' in session:
         g.user = db.session.query(db.User).filter_by(email=session['sub']).one_or_none()
-        if g.user is not None:
-            g.user_location = db.session.query(db.UserLocation).filter_by(user_id=g.user.id).one_or_none()
-
 
 @app.after_request
 def response_minify(response):
@@ -62,7 +59,6 @@ def inject_template_data():
 @sessions.login_required
 def profile_page(formdata=None):
     """Render the profile page."""
-    g.user = db.session.query(db.User).filter_by(email=session['sub']).one_or_none()
     g.user.birthday = format_date(g.user.birthday)
     return render_template('profile.html', formdata=formdata)
 
@@ -72,32 +68,12 @@ def profile_page(formdata=None):
 def profile():
     """Process a profile request."""
 
-    user = db.session.query(db.User).filter_by(email=g.user.email).one_or_none()
-    user = db.User()
+    g.user.sex = request.form['sex']
+    g.user.birthday = request.form['dob'].replace('-', '')
+    g.user.race = request.form['race']
+    g.user.intro = request.form['intro']
+    g.user.country = request.form['country']
 
-    user.email = request.form['email']
-    user.sex = request.form['sex']
-    user.birthday = request.form['dob'].replace('-', '')
-    user.race = request.form['race']
-    user.intro = request.form['intro']
-
-    if '@' not in request.form['email']:
-        flash(u'Invalid email address.', 'danger')
-        return profile_page(formdata=request.form)
-
-    session['sub'] = request.form['email']
-
-    db.session.query(db.User).filter_by(email=g.user.email).update({"email": user.email})
-    db.session.query(db.User).filter_by(email=g.user.email).update({"sex": user.sex})
-    db.session.query(db.User).filter_by(email=g.user.email).update({"birthday": user.birthday})
-    db.session.query(db.User).filter_by(email=g.user.email).update({"race": user.race})
-    db.session.query(db.User).filter_by(email=g.user.email).update({"intro": user.intro})
-
-    user = db.session.query(db.User).filter_by(email=g.user.email).one_or_none()
-    user_location = db.UserLocation()
-    user_location.country = request.form['country']
-
-    db.session.query(db.UserLocation).filter_by(user_id=g.user.id).update({"country": user_location.country})
     db.session.commit()
     flash(u'Thanks for updating your profile!', 'success')
     return redirect(url_for('index_page'))
@@ -234,13 +210,8 @@ def register():
     user.sex = request.form['sex']
     user.birthday = request.form['dob'].replace('-', '')
     user.picture_id = 2
+    user.country = request.form['country']
     db.session.add(user)
-
-    user = db.session.query(db.User).filter_by(email=request.form['email']).one_or_none()
-    user_location = db.UserLocation()
-    user_location.user_id = user.id
-    user_location.country = request.form['country']
-    db.session.add(user_location)
     db.session.commit()
 
     flash(u'Thanks for registering! Please login below.', 'success')

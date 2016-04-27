@@ -7,17 +7,10 @@
             <div class="space" style="margin-top: 3em"></div>
             <form class="form-horizontal" method="post">
                 <div class="form-group col-md-7">
-                    <label for="email" class="col-md-3 control-label">Email</label>
-                    <div class="col-md-9">
-                        <input class="form-control" id="email" name="email"
-                               placeholder="Email" value="{{ g.user.email }}"> 
-                    </div>
-                </div>
-                <div class="form-group col-md-7">
                     <label for="dob" class="col-md-3 control-label">Date of birth</label>
                     <div class="col-md-9">
                         <input type="date" class="form-control" id="dob" name="dob"
-                               placeholder="Date of birth" value="{{ g.user.birthday }}"> 
+                               placeholder="Date of birth" value="{{ g.user.birthday }}">
                     </div>
                 </div>
                 <div class="form-group col-md-7" method="get">
@@ -39,7 +32,7 @@
                     <div class="col-md-9">
                         <select class="form-control" id="country" name="country">
                             {% for country_code, country_name in const.country_codes_by_name %}
-                                {% if g.user_location.country == country_code %}
+                                {% if g.user.country == country_code %}
                                     <option value="{{ country_code }}" selected>{{ country_name }}</option>
                                 {% else %}
                                     <option value="{{ country_code }}">{{ country_name }}</option>
@@ -63,15 +56,15 @@
                     </div>
                 </div>
                 <div class="form-group col-md-7" method="get">
-                    <div class="col-md-3"> 
+                    <div class="col-md-3">
                         <label class="control-label">Introduce Yourself to the Community</label>
                     </div>
-                    <div class="col-md-9"> 
+                    <div class="col-md-9">
                         {% if g.user.intro %}
-                            <textarea class="form-control" id="intro" name="intro" rows="4" 
+                            <textarea class="form-control" id="intro" name="intro" rows="4"
                             placeholder="What would you like other to know about you?">{{ g.user.intro }}</textarea>
                         {% else %}
-                            <textarea class="form-control" id="intro" name="intro" rows="4" 
+                            <textarea class="form-control" id="intro" name="intro" rows="4"
                             placeholder="What would you like other to know about you?"></textarea>
                         {% endif %}
                     </div>

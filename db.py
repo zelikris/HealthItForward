@@ -69,13 +69,6 @@ class Survey(Base):
     survey_responses = relationship(SurveyResponse, backref='survey')
 
 
-class UserLocation(Base):
-    user_id = Column(BIGINT, ForeignKey('user.id'))
-    city = Column(VARCHAR(255), default='')
-    state = Column(CHAR(3), default='')
-    country = Column(CHAR(3), default='')
-
-
 class User(Base):
     name = Column(VARCHAR(255), default='')
     email = Column(VARCHAR(255), default='')
@@ -86,9 +79,11 @@ class User(Base):
     picture_id = Column(BIGINT, ForeignKey('picture.id'))
     race = Column(CHAR(3), default='')
     intro = Column(TEXT)
+    city = Column(VARCHAR(255), default='')
+    state = Column(CHAR(3), default='')
+    country = Column(CHAR(3), default='')
 
     survey_responses = relationship(SurveyResponse, backref='user')
-    locations = relationship(UserLocation, backref='user')
 
 
 class Picture(Base):
