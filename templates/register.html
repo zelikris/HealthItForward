@@ -3,44 +3,44 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <h4 style="margin-top: 0">Profile</h4>
+            <h4 style="margin-top: 0">Register</h4>
             <form class="form-horizontal" method="post">
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="name" class="col-md-3 control-label">Full name</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Full name"
                                value="{{ formdata.name }}">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="email" class="col-md-3 control-label">Email address</label>
                     <div class="col-md-9">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email address"
                                value="{{ formdata.email }}">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="password" class="col-md-3 control-label">Password</label>
                     <div class="col-md-9">
                         <input type="password" class="form-control" id="password" name="password"
                                placeholder="Password">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="confirmpassword" class="col-md-3 control-label">Confirm password</label>
                     <div class="col-md-9">
                         <input type="password" class="form-control" id="confirmpassword" name="confirmpassword"
                                placeholder="Confirm password">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="dob" class="col-md-3 control-label">Date of birth</label>
                     <div class="col-md-9">
                         <input type="date" class="form-control" id="dob" name="dob"
                                placeholder="Date of birth" value="{{ formdata.dob }}">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="country" class="col-md-3 control-label">Country</label>
                     <div class="col-md-9">
                         <select class="form-control" id="country" name="country">
@@ -54,12 +54,12 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-7">
                     <label for="sex" class="col-md-3 control-label">Sex</label>
                     <div class="col-md-9">
                         <select class="form-control" id="sex" name="sex">
                             {% for sex_code, sex_name in const.sex_codes.items() %}
-                                {% if formdata.sex and country_code == formdata.sex %}
+                                {% if formdata.sex and sex_code == formdata.sex %}
                                     <option value="{{ sex_code }}" selected>{{ sex_name }}</option>
                                 {% else %}
                                     <option value="{{ sex_code }}">{{ sex_name }}</option>
@@ -68,14 +68,18 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-offset-3 col-md-9" style="margin-bottom: 10px">
-                    <label class="checkbox" for="terms">
-                        <input type="checkbox" value="" id="terms" name="terms" data-toggle="checkbox">
-                        I accept the terms and conditions
-                    </label>
+                <div class="col-md-7"> 
+                    <div class="col-md-offset-3 col-md-9" style="margin-bottom: 10px; right:2%">
+                        <label class="checkbox" for="terms">
+                            <input type="checkbox" value="" id="terms" name="terms" data-toggle="checkbox">
+                            I accept the terms and conditions
+                        </label>
+                    </div>
                 </div>
-                <div class="col-md-offset-3">
-                    <button type="submit" class="col-md-9 btn btn-block btn-fill btn-primary">Register</button>
+                <div class="col-md-7">
+                    <div class="col-md-4" style="float:right; right:2%">
+                        <button type="submit" class="btn btn-block btn-fill btn-primary">Register</button>
+                    </div>
                 </div>
             </form>
         </div>

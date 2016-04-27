@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import BIGINT, VARCHAR, CHAR
+from sqlalchemy.types import BIGINT, VARCHAR, CHAR, TEXT
 from sqlalchemy.types import BLOB
 
 session = scoped_session(sessionmaker(bind=create_engine(config.db_url, echo=True)))
@@ -84,6 +84,8 @@ class User(Base):
     sex = Column(CHAR(1), default='')
     birthday = Column(CHAR(8), default='')
     picture_id = Column(BIGINT, ForeignKey('picture.id'))
+    race = Column(CHAR(3), default='')
+    intro = Column(TEXT)
 
     survey_responses = relationship(SurveyResponse, backref='user')
     locations = relationship(UserLocation, backref='user')

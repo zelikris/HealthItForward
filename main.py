@@ -24,15 +24,17 @@ app.session_interface = sessions.JWTSessionInterface()
 # WARNIN    : DO NOT TURN THIS ON IN PRODUCTION. It will expose a serious security
 # risk that allows anyone hitting an unhandled exception access to a Python
 # console without restrictions (not to mention display of code and stack traces).
-app.debug = False
+app.debug = True
 
 
 @app.before_request
 def before_request():
     """Look up user from the database before calling request handler."""
     g.user = None
+    g.user_location = None
     if 'sub' in session:
         g.user = db.session.query(db.User).filter_by(email=session['sub']).one_or_none()
+        g.user_location = db.session.query(db.UserLocation).filter_by(user_id=g.user.id).one_or_none()
 
 
 @app.after_request
@@ -57,9 +59,46 @@ def inject_template_data():
 
 @app.route('/profile', methods=['GET'])
 @sessions.login_required
-def profile(formdata=None):
+def profile_page(formdata=None):
     """Render the profile page."""
+    g.user = db.session.query(db.User).filter_by(email=session['sub']).one_or_none()
+    g.user.birthday = format_date(g.user.birthday)
     return render_template('profile.html', formdata=formdata)
+
+
+@app.route('/profile', methods=['POST'])
+@sessions.login_required
+def profile():
+    """Process a profile request."""
+    
+    user = db.session.query(db.User).filter_by(email=g.user.email).one_or_none()
+    user = db.User()
+    
+    user.email = request.form['email']
+    user.sex = request.form['sex']
+    user.birthday = request.form['dob'].replace('-', '')
+    user.race = request.form['race']
+    user.intro = request.form['intro']
+
+    if '@' not in request.form['email']:
+        flash(u'Invalid email address.', 'danger')
+        return profile_page(formdata=request.form)
+
+    db.session.query(db.User).filter_by(email=g.user.email).update({"email": user.email})
+    db.session.query(db.User).filter_by(email=g.user.email).update({"sex": user.sex})
+    db.session.query(db.User).filter_by(email=g.user.email).update({"birthday": user.birthday})
+    db.session.query(db.User).filter_by(email=g.user.email).update({"race": user.race})
+    db.session.query(db.User).filter_by(email=g.user.email).update({"intro": user.intro})
+
+    user = db.session.query(db.User).filter_by(email=g.user.email).one_or_none()
+    user_location = db.UserLocation()
+    user_location.country = request.form['country']
+
+    db.session.query(db.UserLocation).filter_by(user_id=g.user.id).update({"country": user_location.country})
+    db.session.commit()
+    flash(u'Thanks for updating your profile!', 'success')
+    return redirect(url_for('index_page'))
+    
 
 @app.route('/surveys')
 @sessions.login_required
@@ -126,7 +165,7 @@ def login_page():
 @app.route('/login', methods=['POST'])
 def login():
     """Process a login request."""
-    user = db.session.query(db.User).filter_by(email=request.form['email']).one_or_none()
+    user = db.session.query(db.User).filter_by(email=request.form['email'])     .one_or_none()
 
     # Perform the entire verification (including digest computation) even if
     # the user doesn't exist. This helps to prevent timing attacks against the
@@ -135,7 +174,7 @@ def login():
     ok = pbkdf2.verify(request.form['password'], password_hash)
     if ok:
         session['sub'] = request.form['email']
-        next = request.args.get('next') or '/profile'
+        next = request.args.get('next')
         return redirect(urljoin(request.url_root, next))
     else:
         flash(u'Invalid username or password.', 'danger')
@@ -193,6 +232,12 @@ def register():
     user.birthday = request.form['dob'].replace('-', '')
     user.picture_id = 2
     db.session.add(user)
+
+    user = db.session.query(db.User).filter_by(email=request.form['email']).one_or_none()
+    user_location = db.UserLocation()
+    user_location.user_id = user.id
+    user_location.country = request.form['country']
+    db.session.add(user_location)
     db.session.commit()
 
     flash(u'Thanks for registering! Please login below.', 'success')
@@ -242,6 +287,10 @@ def donate():
     """Process a donation request."""
     flash(u'Thanks for donating!', 'success')
     return donate_page()
+
+
+def format_date(date):
+    return '-'.join([date[:4], date[4:6], date[6:]])
 
 
 if __name__ == '__main__':
